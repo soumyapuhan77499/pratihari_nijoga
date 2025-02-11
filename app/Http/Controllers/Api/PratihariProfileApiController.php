@@ -16,8 +16,9 @@ class PratihariProfileApiController extends Controller
 
     try {
         $user = Auth::user();
-        $pratihariId = $user->pratihari_id;
 
+        $pratihariId = $user->pratihari_id;
+dd($pratihariId);
         if (!$pratihariId) {
             return response()->json([
                 'status' => 401,
@@ -25,8 +26,6 @@ class PratihariProfileApiController extends Controller
             ], 401);
         }
 
-        // Generate pratihari_id if not exists
-        $pratihariId = $user->pratihari_id;
         // Create new profile object
         $pratihariProfile = new PratihariProfile();
         $pratihariProfile->pratihari_id = $pratihariId;
