@@ -12,7 +12,6 @@ use App\Http\Controllers\Admin\MasterNijogaSebaController;
 use App\Http\Controllers\Admin\PratihariSebaController;
 use App\Http\Controllers\Admin\PratihariSocialMediaController;
 
-
 // login information route
 Route::controller(LoginRegisterController::class)->group(function() {
     Route::get('/register', 'register')->name('register');
@@ -31,7 +30,6 @@ Route::controller(AdminController::class)->group(function() {
 
     Route::get('/forgot-password','showResetForm')->name('password.reset.form');
     Route::post('/save-forgot-password','resetPassword')->name('admin.resetPassword');
-
 
 });
 
@@ -65,7 +63,6 @@ Route::prefix('admin')->group(function() {
     Route::get('/pratihari-occupation', [PratihariOccupationController::class, 'pratihariOccupation'])->name('admin.pratihariOccupation');
     Route::post('/pratihari-occupation-save', [PratihariOccupationController::class, 'saveOccupation'])->name('admin.pratihari-occupation.store');
 });
-
 
 Route::prefix('admin')->group(function() {
     Route::get('/pratihari-nijoga-seba', [MasterNijogaSebaController::class, 'pratihariNijogaSeba'])->name('admin.pratihariNijogaSeba');
