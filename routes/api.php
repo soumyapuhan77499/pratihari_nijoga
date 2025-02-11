@@ -10,5 +10,5 @@ Route::post('/send-otp', [OtpController::class, 'sendOtp'])->name('api.send-otp'
 Route::post('/verify-otp', [OtpController::class, 'verifyOtp'])->name('api.verify-otp');
 
 Route::middleware('auth:sanctum')->post('/userLogout', [OtpController::class, 'userLogout']);
-Route::post('/save-profile', [PratihariProfileApiController::class, 'saveProfile']);
+Route::middleware('auth:sanctum')->post('/save-profile', [PratihariProfileApiController::class, 'saveProfile']);
 Route::middleware('auth:sanctum')->post('/save-family', [PratihariFamilyApiController::class, 'saveFamily']);

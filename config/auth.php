@@ -38,26 +38,22 @@ return [
 
     'guards' => [
 
-     'web' => [
-        'driver' => 'session',
-        'provider' => 'users',
-    ],
-
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+    
+        'api' => [
+            'driver' => 'sanctum', // Ensure this is set to sanctum
+            'provider' => 'users',
+        ],
+        
     'users' => [  // Make sure this guard exists
         'driver' => 'session',
         'provider' => 'users',
     ],
 
-    'api' => [
-        'driver' => 'sanctum', // Sanctum should be API-based
-        'provider' => 'users',
-        'hash' => false,
-    ],
-    
-    'sanctum' => [
-        'driver' => 'session',
-        'provider' => 'users',
-    ],
+   
     ],
 
 
