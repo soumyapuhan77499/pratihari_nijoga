@@ -16,7 +16,7 @@ class PratihariProfileApiController extends Controller
   
     try {
           // Authenticate user
-          $user = Auth::user();
+          $user = Auth::guard('sanctum')->user();
           if (!$user) {
               return response()->json([
                   'status' => 401,

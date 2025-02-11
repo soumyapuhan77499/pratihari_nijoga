@@ -49,9 +49,8 @@ return [
     ],
 
     'api' => [
-        'driver' => 'token',
+        'driver' => 'sanctum',
         'provider' => 'users',
-        'hash' => false,
     ],
 
     'sanctum' => [
