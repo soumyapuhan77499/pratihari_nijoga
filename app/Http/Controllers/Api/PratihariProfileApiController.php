@@ -17,8 +17,7 @@ class PratihariProfileApiController extends Controller
     try {
           // Authenticate user
           $user = Auth::user(); 
-          
-          dd($user);
+
           if (!$user) {
               return response()->json([
                   'status' => 401,
