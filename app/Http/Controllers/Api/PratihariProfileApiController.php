@@ -5,7 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PratihariProfile;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 class PratihariProfileApiController extends Controller
@@ -13,18 +13,19 @@ class PratihariProfileApiController extends Controller
     public function saveProfile(Request $request)
 {
   
-
     try {
-        $user = Auth::user();
+        // Get authenticated user
+        $user = auth()->user();
 
-        $pratihariId = $user->pratihari_id;
-dd($pratihariId);
-        if (!$pratihariId) {
+        if (!$user) {
             return response()->json([
                 'status' => 401,
                 'message' => 'Unauthorized. Please log in.',
             ], 401);
         }
+
+        // Generate pratihari_id if not exists
+        $pratihariId = $user->pratihari_id;
 
         // Create new profile object
         $pratihariProfile = new PratihariProfile();
