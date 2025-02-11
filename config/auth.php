@@ -49,10 +49,11 @@ return [
     ],
 
     'api' => [
-        'driver' => 'sanctum',
+        'driver' => 'sanctum', // Sanctum should be API-based
         'provider' => 'users',
+        'hash' => false,
     ],
-
+    
     'sanctum' => [
         'driver' => 'session',
         'provider' => 'users',
