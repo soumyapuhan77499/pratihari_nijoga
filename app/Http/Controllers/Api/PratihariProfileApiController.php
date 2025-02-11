@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PratihariProfile;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PratihariProfileApiController extends Controller
 {
@@ -14,15 +15,14 @@ class PratihariProfileApiController extends Controller
 {
   
     try {
-        // Get authenticated user
-        $user = auth()->user();
-
-        if (!$user) {
-            return response()->json([
-                'status' => 401,
-                'message' => 'Unauthorized. Please log in.',
-            ], 401);
-        }
+          // Authenticate user
+          $user = Auth::user();
+          if (!$user) {
+              return response()->json([
+                  'status' => 401,
+                  'message' => 'Unauthorized. Please log in.',
+              ], 401);
+          }
 
         // Generate pratihari_id if not exists
         $pratihariId = $user->pratihari_id;
