@@ -67,7 +67,6 @@ class OtpController extends Controller
             return response()->json(['message' => 'Failed to send OTP. Please try again.'], 500);
         }
     }
-    
     // ✅ Verify OTP Function
     public function verifyOtp(Request $request)
     {
