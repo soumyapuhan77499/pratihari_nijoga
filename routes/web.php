@@ -27,10 +27,8 @@ Route::controller(AdminController::class)->group(function() {
     Route::post('/save-admin-login', 'saveAdminLogin')->name('admin.saveAdminLogin');
     Route::post('/save-admin-register', 'saveAdminRegister')->name('admin.saveAdminRegister');
     Route::get('/admin-logout','adminLogout')->name('admin.logout');
-
     Route::get('/forgot-password','showResetForm')->name('password.reset.form');
     Route::post('/save-forgot-password','resetPassword')->name('admin.resetPassword');
-
 });
 
 Route::controller(PratihariProfileController::class)->group(function() {

@@ -139,90 +139,104 @@
         }
 
         .custom-gradient-btn {
-        background: linear-gradient(135deg, #6a11cb, #2575fc); /* Purple to Blue Gradient */
-        border: none;
-        color: white;
-        padding: 12px;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 8px;
-        transition: all 0.3s ease-in-out;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    }
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            /* Purple to Blue Gradient */
+            border: none;
+            color: white;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
-    .custom-gradient-btn:hover {
-        background: linear-gradient(135deg, #2575fc, #6a11cb); /* Reverse Gradient on Hover */
-        transform: translateY(-2px);
-        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
-    }
+        .custom-gradient-btn:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            /* Reverse Gradient on Hover */
+            transform: translateY(-2px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
     </style>
 @endsection
 
- 
-@section('content')
-<!-- Display Success Message -->
-@if (session('success'))
-<div class="alert alert-success" id="successMessage">
-   {{ session('success') }}
-</div>
-@endif
 
-<!-- Display Error Message -->
-@if (session('error'))
-<div class="alert alert-danger" id="errorMessage">
-   {{ session('error') }}
-</div>
-@endif
+@section('content')
+    <!-- Display Success Message -->
+    @if (session('success'))
+        <div class="alert alert-success" id="successMessage">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <!-- Display Error Message -->
+    @if (session('error'))
+        <div class="alert alert-danger" id="errorMessage">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <!-- Profile Form -->
     <div class="row">
         <div class="col-12 mt-2">
             <div class="card">
                 <div class="card-header" style="text-shadow: 2px 1px 3px rgba(0,0,0,0.4)"><i class="fas fa-user-circle"
-                        style="font-size: 1.8rem;margin-right: 5px;color:rgb(251, 51, 64);text-shadow: 2px 1px 3px rgba(0,0,0,0.4)"></i>Pratihari Profile</div>
-                        <ul class="nav nav-tabs flex-column flex-sm-row mt-2" role="tablist">
+                        style="font-size: 1.8rem;margin-right: 5px;color:rgb(251, 51, 64);text-shadow: 2px 1px 3px rgba(0,0,0,0.4)"></i>Pratihari
+                    Profile</div>
+                <ul class="nav nav-tabs flex-column flex-sm-row mt-2" role="tablist">
 
-                            <li class="nav-item col-12 col-sm-auto">
-                                <a class="nav-link" id="profile-tab"  style="background-color: rgb(49, 49, 181);color: white" data-toggle="tab" href="{{ route('admin.pratihariProfile') }}" role="tab" aria-controls="profile" aria-selected="true">
-                                    <i class="fas fa-user" style="color: white"></i> Profile
-                                </a>
-                            </li>
-                            <li class="nav-item col-12 col-sm-auto">
-                                <a class="nav-link" id="family-tab" data-toggle="tab" href="{{ route('admin.pratihariFamily') }}" role="tab" aria-controls="family" aria-selected="true">
-                                    <i class="fas fa-users"></i> Family
-                                </a>
-                            </li>
-                            
-                            <li class="nav-item col-12 col-sm-auto">
-                                <a class="nav-link" id="id-card-tab" data-toggle="tab" href="{{ route('admin.pratihariIdcard') }}" role="tab" aria-controls="id-card" aria-selected="false">
-                                    <i class="fas fa-id-card"></i> ID Card
-                                </a>
-                            </li>
-                            <li class="nav-item col-12 col-sm-auto">
-                                <a class="nav-link" id="address-tab" data-toggle="tab" href="{{ route('admin.pratihariAddress') }}" role="tab" aria-controls="address" aria-selected="false">
-                                    <i class="fas fa-map-marker-alt"></i> Address
-                                </a>
-                            </li>
-                            <li class="nav-item col-12 col-sm-auto">
-                                <a class="nav-link" id="occupation-tab" data-toggle="tab" href="{{ route('admin.pratihariOccupation') }}" role="tab" aria-controls="occupation" aria-selected="false">
-                                    <i class="fas fa-briefcase"></i> Occupation
-                                </a>
-                            </li>
-                        
-                            <li class="nav-item col-12 col-sm-auto">
-                                <a class="nav-link" id="seba-details-tab" data-toggle="tab" href="{{  route('admin.pratihariSeba')  }}" role="tab" aria-controls="seba-details" aria-selected="false">
-                                    <i class="fas fa-cogs"></i> Seba
-                                </a>
-                            </li>
-                        
-                            <li class="nav-item col-12 col-sm-auto">
-                                <a class="nav-link" id="social-media-tab" data-toggle="tab" href="{{ route('admin.pratihariSocialMedia') }}" role="tab" aria-controls="social-media" aria-selected="false">
-                                    <i class="fas fa-share-alt" style="margin-right: 2px"></i>Social Media 
-                                </a>
-                            </li>
-                           
-                        </ul>
-                        
+                    <li class="nav-item col-12 col-sm-auto">
+                        <a class="nav-link" id="profile-tab" style="background-color: rgb(49, 49, 181);color: white"
+                            data-toggle="tab" href="{{ route('admin.pratihariProfile') }}" role="tab"
+                            aria-controls="profile" aria-selected="true">
+                            <i class="fas fa-user" style="color: white"></i> Profile
+                        </a>
+                    </li>
+                    <li class="nav-item col-12 col-sm-auto">
+                        <a class="nav-link" id="family-tab" data-toggle="tab" href="{{ route('admin.pratihariFamily') }}"
+                            role="tab" aria-controls="family" aria-selected="true">
+                            <i class="fas fa-users"></i> Family
+                        </a>
+                    </li>
+
+                    <li class="nav-item col-12 col-sm-auto">
+                        <a class="nav-link" id="id-card-tab" data-toggle="tab" href="{{ route('admin.pratihariIdcard') }}"
+                            role="tab" aria-controls="id-card" aria-selected="false">
+                            <i class="fas fa-id-card"></i> ID Card
+                        </a>
+                    </li>
+                    <li class="nav-item col-12 col-sm-auto">
+                        <a class="nav-link" id="address-tab" data-toggle="tab" href="{{ route('admin.pratihariAddress') }}"
+                            role="tab" aria-controls="address" aria-selected="false">
+                            <i class="fas fa-map-marker-alt"></i> Address
+                        </a>
+                    </li>
+                    <li class="nav-item col-12 col-sm-auto">
+                        <a class="nav-link" id="occupation-tab" data-toggle="tab"
+                            href="{{ route('admin.pratihariOccupation') }}" role="tab" aria-controls="occupation"
+                            aria-selected="false">
+                            <i class="fas fa-briefcase"></i> Occupation
+                        </a>
+                    </li>
+
+                    <li class="nav-item col-12 col-sm-auto">
+                        <a class="nav-link" id="seba-details-tab" data-toggle="tab"
+                            href="{{ route('admin.pratihariSeba') }}" role="tab" aria-controls="seba-details"
+                            aria-selected="false">
+                            <i class="fas fa-cogs"></i> Seba
+                        </a>
+                    </li>
+
+                    <li class="nav-item col-12 col-sm-auto">
+                        <a class="nav-link" id="social-media-tab" data-toggle="tab"
+                            href="{{ route('admin.pratihariSocialMedia') }}" role="tab" aria-controls="social-media"
+                            aria-selected="false">
+                            <i class="fas fa-share-alt" style="margin-right: 2px"></i>Social Media
+                        </a>
+                    </li>
+
+                </ul>
+
 
                 <div class="card-body">
                     <form action="{{ route('admin.pratihari-profile.store') }}" method="POST"
@@ -230,72 +244,104 @@
                         @csrf
                         <div class="row">
                             <!-- First Name -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <i class="fa fa-user"></i>
-                                    <label for="first_name">First Name</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+
+
+                            <div class="col-md-3">
+                                <label for="first_name">First Name</label>
+                                <div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><i class="fa fa-user" style="color: blue"></i></span>
+                                        <input type="text" name="first_name" id="first_name" class="form-control">
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Middle Name -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <i class="fa fa-user"></i>
-                                    <label for="middle_name">Middle Name</label>
-                                    <input type="text" class="form-control" id="middle_name" name="middle_name">
+                            <div class="col-md-3">
+                                <label for="middle_name">Middle Name</label>
+                                <div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><i class="fa fa-user"
+                                                style="color: blue"></i></span>
+                                        <input type="text" name="middle_name" id="middle_name" class="form-control">
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Last Name -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <i class="fa fa-user"></i>
-                                    <label for="last_name">Last Name</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+
+                            <div class="col-md-3">
+                                <label for="last_name">Last Name</label>
+                                <div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><i class="fa fa-user"
+                                                style="color: blue"></i></span>
+                                        <input type="text" name="last_name" id="last_name" class="form-control">
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Alias Name -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <i class="fa fa-user-tag"></i>
-                                    <label for="alias_name">Alias Name</label>
-                                    <input type="text" class="form-control" id="alias_name" name="alias_name">
+                            <div class="col-md-3">
+                                <label for="alias_name">Alias Name</label>
+                                <div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><i class="fa fa-user-tag"
+                                                style="color: blue"></i></span>
+                                        <input type="text" name="alias_name" id="alias_name" class="form-control">
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Email -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <i class="fa fa-envelope"></i>
-                                    <label for="email">Email ID</label>
-                                    <input type="email" class="form-control" id="email" name="email">
+                            <div class="col-md-3">
+                                <label for="email">Email ID</label>
+                                <div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><i class="fa fa-envelope"
+                                                style="color: blue"></i></span>
+                                        <input type="email" class="form-control" id="email" name="email">
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- WhatsApp No -->
-                            <!-- WhatsApp No -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <i class="fa fa-phone"></i>
-                                    <label for="whatsapp_no">WhatsApp No</label>
-                                    <input type="tel" class="form-control" id="whatsapp_no" name="whatsapp_no"
-                                        pattern="\d{10}" maxlength="10" minlength="10">
+
+                            <div class="col-md-3">
+                                <label for="whatsapp_no">WhatsApp No</label>
+                                <div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><i class="fa fa-phone"
+                                                style="color: blue"></i></span>
+                                        <input type="tel" class="form-control" id="whatsapp_no" name="whatsapp_no"
+                                            pattern="\d{10}" maxlength="10" minlength="10">
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Phone No -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <i class="fa fa-phone"></i>
-                                    <label for="phone_no">Phone No</label>
-                                    <input type="tel" class="form-control" id="phone_no" name="phone_no"
-                                        pattern="\d{10}" maxlength="10" minlength="10" required>
+                            <div class="col-md-3">
+                                <label for="phone_no">Phone No</label>
+                                <div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><i class="fa fa-phone"
+                                                style="color: blue"></i></span>
+                                        <input type="tel" class="form-control" id="phone_no" name="phone_no"
+                                            pattern="\d{10}" maxlength="10" minlength="10">
+                                    </div>
                                 </div>
                             </div>
 
-
+                            <div class="col-md-3">
+                                <label for="alt_phone_no">Aulternative Phone No</label>
+                                <div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><i class="fa fa-phone"
+                                                style="color: blue"></i></span>
+                                        <input type="tel" class="form-control" id="alt_phone_no" name="alt_phone_no"
+                                            pattern="\d{10}" maxlength="10" minlength="10">
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- Blood Group -->
                             <div class="col-md-4">
@@ -321,40 +367,42 @@
                                 <div class="form-group">
                                     <i class="fa fa-id-card"></i>
                                     <label for="health_card_no">Health Card No</label>
-                                    <input type="text" class="form-control" id="health_card_no" name="health_card_no">
+                                    <input type="text" class="form-control" id="health_card_no"
+                                        name="health_card_no">
                                 </div>
                             </div>
-                                <!-- Date Input Field -->
-                                <div class="col-md-4" id="dateField" style="display: none;">
-                                    <div class="form-group">
-                                        <label for="joining_date">
-                                            <i class="fa fa-calendar"></i> Date of Sadhi Bandha/Joining
-                                        </label>
-                                        <input type="date" class="form-control" id="joining_date" name="joining_date">
-                                    </div>
+                            <!-- Date Input Field -->
+                            <div class="col-md-4" id="dateField" style="display: none;">
+                                <div class="form-group">
+                                    <label for="joining_date">
+                                        <i class="fa fa-calendar"></i> Date of Sadhi Bandha/Joining
+                                    </label>
+                                    <input type="date" class="form-control" id="joining_date" name="joining_date">
                                 </div>
-    
-                                <!-- Year Dropdown (Initially Hidden) -->
-                                <div class="col-md-4" id="yearField">
-                                    <div class="form-group">
-                                        <label for="joining_year">
-                                            <i class="fa fa-calendar-alt"></i> Select Year of Joining
-                                        </label>
-                                        <select class="form-control" id="joining_date" name="joining_date">
-                                            <option value="">Select Year</option>
-                                            @for ($i = date('Y'); $i >= 1900; $i--)
-                                                <option value="{{ $i }}">{{ $i }}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
+                            </div>
+
+                            <!-- Year Dropdown (Initially Hidden) -->
+                            <div class="col-md-4" id="yearField">
+                                <div class="form-group">
+                                    <label for="joining_year">
+                                        <i class="fa fa-calendar-alt"></i> Select Year of Joining
+                                    </label>
+                                    <select class="form-control" id="joining_date" name="joining_date">
+                                        <option value="">Select Year</option>
+                                        @for ($i = date('Y'); $i >= 1900; $i--)
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                    </select>
                                 </div>
+                            </div>
 
                             <!-- Profile Photo -->
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <i class="fa fa-camera"></i>
                                     <label for="profile_photo">Profile Photo</label>
-                                    <input type="file" class="form-control" id="profile_photo" name="profile_photo" required>
+                                    <input type="file" class="form-control" id="profile_photo" name="profile_photo"
+                                        required>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -366,18 +414,18 @@
                                 </div>
                             </div>
 
-                          
+
                             <div class="d-flex align-items-center">
-                                    <input type="checkbox" id="remember_date" onchange="toggleDateField()"
-                                      >
-                                    <label for="remember_date" 
-                                        style="font-size: 1.1rem; font-weight: 500;margin-left: 10px;margin-top:10px">
-                                        Remember Exact Date Of Joining?
-                                    </label>
+                                <input type="checkbox" id="remember_date" onchange="toggleDateField()">
+                                <label for="remember_date"
+                                    style="font-size: 1.1rem; font-weight: 500;margin-left: 10px;margin-top:10px">
+                                    Remember Exact Date Of Joining?
+                                </label>
                             </div>
 
                             <div class="col-12 text-center">
-                                <button type="submit" class="btn btn-lg mt-3 w-50 custom-gradient-btn" style="color: white">
+                                <button type="submit" class="btn btn-lg mt-3 w-50 custom-gradient-btn"
+                                    style="color: white">
                                     <i class="fa fa-save"></i> Submit
                                 </button>
                             </div>
@@ -391,30 +439,29 @@
 @endsection
 
 @section('scripts')
-   
-<script>
-    // Wait for the DOM to load
-    document.addEventListener("DOMContentLoaded", function() {
-        // Hide success message after 5 seconds
-        setTimeout(function() {
-            let successMessage = document.getElementById("successMessage");
-            if (successMessage) {
-                successMessage.style.transition = "opacity 0.5s";
-                successMessage.style.opacity = "0";
-                setTimeout(() => successMessage.style.display = "none", 500);
-            }
-        }, 5000);
-    
-        // Hide error message after 5 seconds
-        setTimeout(function() {
-            let errorMessage = document.getElementById("errorMessage");
-            if (errorMessage) {
-                errorMessage.style.transition = "opacity 0.5s";
-                errorMessage.style.opacity = "0";
-                setTimeout(() => errorMessage.style.display = "none", 500);
-            }
-        }, 5000);
-    });
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener("DOMContentLoaded", function() {
+            // Hide success message after 5 seconds
+            setTimeout(function() {
+                let successMessage = document.getElementById("successMessage");
+                if (successMessage) {
+                    successMessage.style.transition = "opacity 0.5s";
+                    successMessage.style.opacity = "0";
+                    setTimeout(() => successMessage.style.display = "none", 500);
+                }
+            }, 5000);
+
+            // Hide error message after 5 seconds
+            setTimeout(function() {
+                let errorMessage = document.getElementById("errorMessage");
+                if (errorMessage) {
+                    errorMessage.style.transition = "opacity 0.5s";
+                    errorMessage.style.opacity = "0";
+                    setTimeout(() => errorMessage.style.display = "none", 500);
+                }
+            }, 5000);
+        });
     </script>
     <script>
         function toggleDateField() {
