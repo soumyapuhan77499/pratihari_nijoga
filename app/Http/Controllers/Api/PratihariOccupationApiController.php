@@ -15,6 +15,7 @@ class PratihariOccupationApiController extends Controller
         try {
             // Authenticate the user
             $user = Auth::user();
+            
             if (!$user || !$user->pratihari_id) {
                 return response()->json([
                     'status' => false,
