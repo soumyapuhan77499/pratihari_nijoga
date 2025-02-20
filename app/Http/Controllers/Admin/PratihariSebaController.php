@@ -37,6 +37,7 @@ public function getBeddhaBySeba($seba_id)
                                         ->get();
     return response()->json($beddhas);
 }
+
 public function saveSeba(Request $request)
 {
     try {

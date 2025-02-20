@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\PratihariIdcardApiController;
 use App\Http\Controllers\Api\PratihariAddressApiController;
 use App\Http\Controllers\Api\PratihariOccupationApiController;
 use App\Http\Controllers\Api\PratihariSocialMediaApiController;
+use App\Http\Controllers\Api\PratihariSebaApiController;
 
 
 Route::post('/send-otp', [OtpController::class, 'sendOtp'])->name('api.send-otp');
@@ -21,4 +22,10 @@ Route::middleware('auth:sanctum')->post('/save-idcard', [PratihariIdcardApiContr
 Route::middleware('auth:sanctum')->post('/save-address', [PratihariAddressApiController::class, 'saveAddress']);
 Route::middleware('auth:sanctum')->post('/save-occupation', [PratihariOccupationApiController::class, 'saveOccupation']);
 Route::middleware('auth:sanctum')->post('/save-socialmedia', [PratihariSocialMediaApiController::class, 'saveSocialMedia']);
+Route::middleware('auth:sanctum')->post('/save-seba', [PratihariSebaApiController::class, 'saveSeba']);
+
+
+Route::get('/nijogas', [PratihariSebaApiController::class, 'getNijogas']);
+Route::get('/sebas/{nijoga_id}', [PratihariSebaApiController::class, 'getSebaByNijoga']);
+Route::get('/beddhas/{seba_id}', [PratihariSebaApiController::class, 'getBeddhaBySeba']);
 
