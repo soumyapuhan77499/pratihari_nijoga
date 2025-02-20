@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\PratihariFamilyApiController;
 use App\Http\Controllers\Api\PratihariIdcardApiController;
 use App\Http\Controllers\Api\PratihariAddressApiController;
 use App\Http\Controllers\Api\PratihariOccupationApiController;
+use App\Http\Controllers\Api\PratihariSocialMediaApiController;
+
 
 Route::post('/send-otp', [OtpController::class, 'sendOtp'])->name('api.send-otp');
 Route::post('/verify-otp', [OtpController::class, 'verifyOtp'])->name('api.verify-otp');
@@ -18,3 +20,5 @@ Route::middleware('auth:sanctum')->post('/save-family', [PratihariFamilyApiContr
 Route::middleware('auth:sanctum')->post('/save-idcard', [PratihariIdcardApiController::class, 'saveIdcard']);
 Route::middleware('auth:sanctum')->post('/save-address', [PratihariAddressApiController::class, 'saveAddress']);
 Route::middleware('auth:sanctum')->post('/save-occupation', [PratihariOccupationApiController::class, 'saveOccupation']);
+Route::middleware('auth:sanctum')->post('/save-socialmedia', [PratihariSocialMediaApiController::class, 'saveSocialMedia']);
+
