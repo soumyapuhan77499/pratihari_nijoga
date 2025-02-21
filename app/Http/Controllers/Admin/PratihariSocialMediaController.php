@@ -25,6 +25,6 @@ class PratihariSocialMediaController extends Controller
         $socialMedia->linkedin_url = $request->linkedin;
         $socialMedia->save();
 
-        return redirect()->back()->with('success', 'Pratihari Social Media details saved successfully');
+        return redirect()->route('admin.pratihariManageProfile')->with('success', 'Pratihari Social Media details saved successfully');
     }
 }

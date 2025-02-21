@@ -53,6 +53,11 @@ return [
         'provider' => 'users',
     ],
 
+   'admins' => [  // Added admin guard
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+
    
     ],
 
@@ -79,6 +84,12 @@ return [
         'driver' => 'eloquent',
         'model' => App\Models\User::class,
     ],
+
+    'admins' => [  // Added admin provider
+        'driver' => 'eloquent',
+        'model' => App\Models\Admin::class, // Ensure you have this model
+    ],
+
     ],
 
 
@@ -112,6 +123,13 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+
+        'admins' => [  // Added password reset for admins
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 120,
+            'throttle' => 120,
         ],
     ],
 

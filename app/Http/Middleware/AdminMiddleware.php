@@ -24,23 +24,13 @@ class AdminMiddleware
 
     //     abort(403, 'Unauthorized action.');
     // }
-    public function handle(Request $request, Closure $next, $role)
+  
+
+    public function handle($request, Closure $next)
     {
-        // Check if the user is authenticated
-        if (!Auth::check()) {
-            // If user is not authenticated, redirect to login page
-            return redirect()->route('login');
+        if (!Auth::guard('admins')->check()) {
+            return redirect()->route('admin.AdminLogin')->with('message', 'Please login first.');
         }
-
-        // Get the authenticated user
-        $user = Auth::user();
-
-        // Check if the user has the required role
-        if ($user->role !== $role) {
-            // If not, redirect to home page or show unauthorized error page
-            abort(403, 'Unauthorized action.');
-        }
-
         return $next($request);
     }
 }

@@ -21,6 +21,7 @@ class PratihariProfile extends Model
          'email',
          'whatsapp_no',
          'phone_no',
+         'alt_phone_no',
          'blood_group',
          'healthcard_no',
          'profile_photo',
@@ -37,4 +38,10 @@ class PratihariProfile extends Model
     {
         return $this->hasOne(PratihariAddress::class, 'pratihari_id', 'pratihari_id');
     }
+
+    public function idcard()
+    {
+        return $this->hasOne(PratihariIdcard::class, 'pratihari_id', 'pratihari_id');
+    }
+
 }

@@ -12,30 +12,22 @@ use App\Http\Controllers\Admin\MasterNijogaSebaController;
 use App\Http\Controllers\Admin\PratihariSebaController;
 use App\Http\Controllers\Admin\PratihariSocialMediaController;
 
-// login information route
-Route::controller(LoginRegisterController::class)->group(function() {
-    Route::get('/register', 'register')->name('register');
-    Route::post('/store', 'store')->name('store');
-    Route::post('/authenticate', 'authenticate')->name('authenticate');
-    Route::post('/logout', 'logout')->name('logout');
+Route::controller(AdminController::class)->group(function() {
+    Route::get('/', 'showOtpForm')->name('admin.AdminLogin');
+    Route::post('/send-otp',  'sendOtp');
+    Route::post('/verify-otp',  'verifyOtp')->name('verify.otp'); 
+    Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
 });
 
-Route::controller(AdminController::class)->group(function() {
-    Route::get('/', 'AdminLogin')->name('admin.AdminLogin');
-    Route::get('/admin/register', 'AdminRegister')->name('admin.register');
-    Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
-    Route::post('/save-admin-login', 'saveAdminLogin')->name('admin.saveAdminLogin');
-    Route::post('/save-admin-register', 'saveAdminRegister')->name('admin.saveAdminRegister');
-    Route::get('/admin-logout','adminLogout')->name('admin.logout');
-    Route::get('/forgot-password','showResetForm')->name('password.reset.form');
-    Route::post('/save-forgot-password','resetPassword')->name('admin.resetPassword');
-});
+
 
 Route::controller(PratihariProfileController::class)->group(function() {
     Route::get('/admin/pratihari-profile', 'pratihariProfile')->name('admin.pratihariProfile');
     Route::post('/admin/pratihari-profile-save', 'saveProfile')->name('admin.pratihari-profile.store');
     Route::get('/admin/pratihari-manage-profile', 'pratihariManageProfile')->name('admin.pratihariManageProfile');
     Route::get('/get-pratihari-address','getPratihariAddress')->name('getPratihariAddress');
+    Route::get('/get-profile-details/{pratihari_id}','viewProfile')->name('admin.viewProfile');
+
 
 });
 
@@ -54,6 +46,12 @@ Route::prefix('admin')->group(function() {
 Route::prefix('admin')->group(function() {
     Route::get('/pratihari-address', [PratihariAddressController::class, 'pratihariAddress'])->name('admin.pratihariAddress');
     Route::post('/pratihari-address-save', [PratihariAddressController::class, 'saveAddress'])->name('admin.pratihari-address.store');
+    Route::post('/save-sahi', [PratihariAddressController::class, 'saveSahi'])->name('saveSahi');
+    Route::get('/add-sahi', [PratihariAddressController::class, 'addSahi'])->name('addSahi');
+    Route::get('/manage-sahi', [PratihariAddressController::class, 'manageSahi'])->name('manageSahi');
+    Route::post('/sahi/update/{id}', [PratihariAddressController::class, 'update'])->name('sahi.update');
+    Route::post('/sahi/delete/{id}', [PratihariAddressController::class, 'delete'])->name('sahi.delete');
+
 });
 
 

@@ -9,6 +9,13 @@ use App\Models\PratihariProfile;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use App\Models\PratihariAddress;
+use App\Models\PratihariFamily;
+use App\Models\PratihariChildren;
+use App\Models\PratihariIdcard;
+use App\Models\PratihariSeba;
+use App\Models\PratihariOccupation;
+use App\Models\PratihariSocialMedia;
+
 
 class PratihariProfileController extends Controller
 {
@@ -44,6 +51,7 @@ class PratihariProfileController extends Controller
             $pratihariProfile->email = $request->email;
             $pratihariProfile->whatsapp_no = $request->whatsapp_no;
             $pratihariProfile->phone_no = $request->phone_no;
+            $pratihariProfile->alt_phone_no = $request->alt_phone_no;
             $pratihariProfile->blood_group = $request->blood_group;
             $pratihariProfile->healthcard_no = $request->health_card_no;
     
@@ -99,6 +107,33 @@ class PratihariProfileController extends Controller
         }
     
         return response()->json($address);
+    }
+
+    public function viewProfile($pratihari_id)
+    {
+        // Fetch Profile Details
+        $profile = PratihariProfile::with([ 'address'])->where('pratihari_id', $pratihari_id)->first();
+
+        // Fetch Family Details
+        $family = PratihariFamily::where('pratihari_id', $pratihari_id)->first();
+
+        $children = PratihariChildren::where('pratihari_id', $pratihari_id)->get();
+
+        $idcard = PratihariIdcard::where('pratihari_id', $pratihari_id)->get();
+
+        $occupation = PratihariOccupation::where('pratihari_id', $pratihari_id)->get();
+
+
+        $sebaDetails = PratihariSeba::with(['beddhaMaster','sebaMaster','nijogaMaster'])->where('pratihari_id', $pratihari_id)->get();
+
+        $socialMedia = PratihariSocialMedia::where('pratihari_id', $pratihari_id)->first();
+
+        // Check if profile exists
+        if (!$profile) {
+            return redirect()->back()->with('error', 'Profile not found');
+        }
+
+        return view('admin.view-pratihari-profile', compact('profile', 'family','children','idcard','occupation','sebaDetails','socialMedia'));
     }
     
 
