@@ -22,16 +22,17 @@ class PratihariSebaApiController extends Controller
                 'status' => 200,
                 'message' => 'Nijogas fetched successfully',
                 'data' => $nijogas
-            ], 200, );
+            ], 200);
     
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 500,
                 'message' => 'Something went wrong',
                 'error' => $e->getMessage()
-            ], 500,);
+            ], 500);
         }
     }
+    
     
 
     // Get Seba list based on Nijoga ID

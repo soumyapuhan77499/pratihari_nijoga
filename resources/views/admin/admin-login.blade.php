@@ -81,6 +81,9 @@
                                 <button type="submit" class="btn btn-primary">Send OTP</button>
                             </form>
                         @endif
+
+                        <!-- Hidden input for OneSignal player ID -->
+                        <input type="hidden" id="onesignal_player_id" name="onesignal_player_id">
                     </div>
                 </div>
             </div>
@@ -120,12 +123,16 @@
 </script>
 
 <!-- OneSignal Push Notification -->
-<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        OneSignal.push(function() {
-            OneSignal.getUserId(function(playerId) {
-                document.getElementById('onesignal_player_id').value = playerId;
+    document.addEventListener("DOMContentLoaded", function () {
+        OneSignal.push(function () {
+            OneSignal.getUserId().then(function (playerId) {
+                if (playerId) {
+                    document.getElementById('onesignal_player_id').value = playerId;
+                }
+            }).catch(function (error) {
+                console.error("OneSignal Player ID Error:", error);
             });
         });
     });
