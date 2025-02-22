@@ -65,9 +65,11 @@ class PratihariProfileController extends Controller
                 $profilePhotoPath = $profilePhoto->store('uploads/profile_photos', 'public');
                 $pratihariProfile->profile_photo = $profilePhotoPath;
             }
-    
+
             // Set the joining year
             $pratihariProfile->joining_date = $request->joining_date;
+            $pratihariProfile->joining_year = $request->joining_year;
+
             $pratihariProfile->date_of_birth = $request->date_of_birth;
 
     

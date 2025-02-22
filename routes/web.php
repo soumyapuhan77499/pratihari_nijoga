@@ -19,16 +19,12 @@ Route::controller(AdminController::class)->group(function() {
     Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
 });
 
-
-
 Route::controller(PratihariProfileController::class)->group(function() {
     Route::get('/admin/pratihari-profile', 'pratihariProfile')->name('admin.pratihariProfile');
     Route::post('/admin/pratihari-profile-save', 'saveProfile')->name('admin.pratihari-profile.store');
     Route::get('/admin/pratihari-manage-profile', 'pratihariManageProfile')->name('admin.pratihariManageProfile');
     Route::get('/get-pratihari-address','getPratihariAddress')->name('getPratihariAddress');
     Route::get('/get-profile-details/{pratihari_id}','viewProfile')->name('admin.viewProfile');
-
-
 });
 
 Route::prefix('admin')->group(function() {

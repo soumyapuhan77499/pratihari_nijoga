@@ -11,9 +11,8 @@ use App\Http\Controllers\Api\PratihariOccupationApiController;
 use App\Http\Controllers\Api\PratihariSocialMediaApiController;
 use App\Http\Controllers\Api\PratihariSebaApiController;
 
-
-Route::post('/send-otp', [OtpController::class, 'sendOtp'])->name('api.send-otp');
-Route::post('/verify-otp', [OtpController::class, 'verifyOtp'])->name('api.verify-otp');
+Route::post('/send-otp', [OtpController::class, 'sendOtp'])->name('admin.sendOtp');
+Route::post('/verify-otp', [OtpController::class, 'verifyOtp'])->name('admin.verifyOtp');
 
 Route::middleware('auth:sanctum')->post('/userLogout', [OtpController::class, 'userLogout']);
 Route::middleware('auth:sanctum')->post('/save-profile', [PratihariProfileApiController::class, 'saveProfile']);

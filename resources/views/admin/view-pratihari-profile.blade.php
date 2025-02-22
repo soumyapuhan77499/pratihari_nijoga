@@ -1,6 +1,82 @@
 @extends('layouts.app')
 @section('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+    /* profile css */
+    .custom-card {
+            background: linear-gradient(135deg, #ffcc70, #ff8e53);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        /* Profile Image */
+        .profile-image {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-image img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .profile-online {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 15px;
+            height: 15px;
+            background: #28a745;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        /* Profile Info */
+        .prof-details h4 {
+            font-size: 22px;
+            font-weight: bold;
+            color: #3314de;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .prof-details p {
+            font-size: 14px;
+            font-weight: 500;
+            color: #090909;
+        }
+
+        /* Tab Menu */
+        .profile-nav-line {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .profile-nav-line .nav-link {
+            color: #ffeb3b;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .profile-nav-line .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .profile-nav-line .active {
+            background: #ffeb3b;
+            color: #3e1c78;
+        }
         /* personal css   */
         .personal-details-card {
             border-radius: 10px;
@@ -33,9 +109,9 @@
         }
 
         .personal-details-text {
-            font-size: 16px;
+            font-size: 13px;
             font-weight: 500;
-            color: #333;
+            color: #0d0d0d;
         }
 
         .personal-details-value {
@@ -187,41 +263,34 @@
     </div>
     <!-- /breadcrumb -->
 
-    <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div class="card custom-card">
-                <div class="card-body d-md-flex">
-                    <div class="">
-                        <span class="profile-image pos-relative">
-                            <img class="br-5" src="{{ asset('storage/' . $profile->profile_photo) }}" alt="Profile Photo">
-
-                            <span class="bg-success text-white wd-1 ht-1 rounded-pill profile-online"></span>
-                        </span>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card custom-card">
+                    <div class="card-body d-md-flex align-items-center">
+                        <div class="me-4">
+                            <span class="profile-image">
+                                <img class="br-5" src="{{ asset('storage/' . $profile->profile_photo) }}" alt="Profile Photo">
+                                <span class="profile-online"></span>
+                            </span>
+                        </div>
+                        <div class="my-md-auto mt-4 prof-details">
+                            <h4>{{ $profile->first_name }} {{ $profile->last_name }}</h4>
+                            <p><i class="fa fa-envelope me-2"></i> <b>Email:</b> {{ $profile->email }}</p>
+                            <p><i class="fa fa-phone me-2"></i> <b>Phone:</b> {{ $profile->phone_no }}</p>
+                            <p><i class="fa fa-globe me-2"></i> <b>Whatsapp:</b> {{ $profile->whatsapp_no }}</p>
+                        </div>
                     </div>
-                    <div class="my-md-auto mt-4 prof-details">
-                        <h4 class="font-weight-semibold ms-md-4 ms-0 mb-1 pb-0">{{ $profile->first_name }}
-                            {{ $profile->last_name }}</h4>
-                        <p class="text-muted ms-md-4 ms-0 mb-2"><i class="fa fa-envelope me-2"></i> <b>Email:</b>
-                            {{ $profile->email }}</p>
-                        <p class="text-muted ms-md-4 ms-0 mb-2"><i class="fa fa-phone me-2"></i> <b>Phone:</b>
-                            {{ $profile->phone_no }}</p>
-                        <p class="text-muted ms-md-4 ms-0 mb-2"><i class="fa fa-globe me-2"></i> <b>Whatsapp:</b>
-                            {{ $profile->whatsapp_no }}</p>
-
-                    </div>
-                </div>
-
-                <div class="card-footer py-0">
-                    <div class="profile-tab tab-menu-heading border-bottom-0">
-                        <nav class="nav main-nav-line p-0 tabs-menu profile-nav-line border-0 br-5 mb-0">
-                            <a class="nav-link mb-2 mt-2 active" data-bs-toggle="tab" href="#personal">Personal</a>
-                            <a class="nav-link mb-2 mt-2" data-bs-toggle="tab" href="#family">Family</a>
-                            <a class="nav-link  mb-2 mt-2" data-bs-toggle="tab" href="#idcard">Id Card</a>
-                            <a class="nav-link  mb-2 mt-2" data-bs-toggle="tab" href="#address">Address</a>
-                            <a class="nav-link  mb-2 mt-2" data-bs-toggle="tab" href="#occupation">Occupation</a>
-                            <a class="nav-link  mb-2 mt-2" data-bs-toggle="tab" href="#seba">Seba</a>
-                            <a class="nav-link  mb-2 mt-2" data-bs-toggle="tab" href="#social">Social Media</a>
-
+    
+                    <div class="card-footer py-3">
+                        <nav class="nav main-nav-line profile-nav-line">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#personal">Personal</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#family">Family</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#idcard">Id Card</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#address">Address</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#occupation">Occupation</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#seba">Seba</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#social">Social Media</a>
                         </nav>
                     </div>
                 </div>
@@ -239,8 +308,8 @@
                     <div class="main-content-body tab-pane active" id="personal">
                         <div class="card personal-details-card">
                             <div class="card-body">
-                                <h4 class="fw-bold" style="color: rgb(1, 1, 66)"><i class="fas fa-user-circle"
-                                        style="color:rgb(85, 1, 15)"></i> Personal Details</h4>
+                                <h4 class="fw-bold" style="color: rgb(6, 6, 6)"><i class="fas fa-user-circle"
+                                        style="color:rgb(61, 33, 218)"></i> Personal Details</h4>
 
                                 <div class="personal-details-item">
                                     <i class="fas fa-id-card"></i>
@@ -717,3 +786,8 @@
     </div>
     </div>
 @endsection
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+@endsection
+

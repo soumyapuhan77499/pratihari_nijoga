@@ -53,7 +53,7 @@
 
                         @if (session('otp_sent'))
                             <!-- OTP Verification Form -->
-                            <form action="/verify-otp" method="POST">
+                            <form action="{{ route('admin.verifyOtp') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label>Mobile Number</label>
@@ -72,7 +72,7 @@
 
                         @else
                             <!-- Phone Number Input Form -->
-                            <form action="/send-otp" method="POST">
+                            <form action="{{ route('admin.sendOtp') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label>Enter Your Phone Number</label>

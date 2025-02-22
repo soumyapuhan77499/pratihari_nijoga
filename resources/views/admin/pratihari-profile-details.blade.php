@@ -368,8 +368,8 @@
                                     <div class="col-md-3" id="dateField" style="display: none;">
                                         <label for="joining_date">Exact Date of Joining</label>
                                         <div class="input-group mb-2">
-                                            <span class="input-group-text"><i class="fa fa-calendar" style="color: red"></i></span>
-                                            <input type="date" id="joining_date" name="joining_date" class="form-control">
+                                            <span class="input-group-text"><i class="fa fa-calendar" style="color: rgb(30, 0, 255)"></i></span>
+                                            <input type="date" id="joining_year" name="joining_year" class="form-control">
                                         </div>
                                     </div>
                                 </div>

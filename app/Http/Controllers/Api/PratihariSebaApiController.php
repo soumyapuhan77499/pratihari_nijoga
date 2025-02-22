@@ -13,25 +13,26 @@ use Illuminate\Support\Facades\Auth;
 class PratihariSebaApiController extends Controller
 {
 
-    public function getNijogas()
+    public function getNijogas(Request $request)
     {
         try {
             $nijogas = PratihariNijogaMaster::all();
-
+    
             return response()->json([
                 'status' => 200,
                 'message' => 'Nijogas fetched successfully',
                 'data' => $nijogas
-            ], 200);
-
+            ], 200, );
+    
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 500,
                 'message' => 'Something went wrong',
                 'error' => $e->getMessage()
-            ], 500);
+            ], 500,);
         }
     }
+    
 
     // Get Seba list based on Nijoga ID
     public function getSebaByNijoga($nijoga_id)

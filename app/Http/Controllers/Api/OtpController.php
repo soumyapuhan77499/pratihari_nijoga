@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -28,15 +28,19 @@ class OtpController extends Controller
     // ✅ Send OTP Function
     public function sendOtp(Request $request)
     {
+        if (!$request->expectsJson()) {
+            return response()->json(['message' => 'Only JSON requests are allowed'], 406);
+        }
+    
         $phoneNumber = $request->input('phone');
-
+    
         if (!$phoneNumber) {
             return response()->json(['message' => 'Phone number is required.'], 422);
         }
-
+    
         $client = new Client();
         $url = rtrim($this->apiUrl, '/') . '/auth/otp/v1/send';
-
+    
         try {
             $response = $client->post($url, [
                 'headers' => [
@@ -46,17 +50,17 @@ class OtpController extends Controller
                 ],
                 'json' => ['phoneNumber' => $phoneNumber],
             ]);
-
+    
             $body = json_decode($response->getBody(), true);
             Log::info("Send OTP Response: ", $body);
-
+    
             if (!isset($body['orderId'])) {
                 return response()->json(['message' => 'Failed to send OTP. Please try again.'], 400);
             }
-
+    
             session(['otp_order_id' => $body['orderId']]);
             session(['otp_phone' => $phoneNumber]);
-
+    
             return response()->json([
                 'message' => 'OTP sent successfully',
                 'order_id' => $body['orderId'],
@@ -67,6 +71,7 @@ class OtpController extends Controller
             return response()->json(['message' => 'Failed to send OTP. Please try again.'], 500);
         }
     }
+    
     // ✅ Verify OTP Function
     public function verifyOtp(Request $request)
     {
@@ -161,17 +166,17 @@ class OtpController extends Controller
 
         try {
             if ($deviceId) {
-                $device = UserDevice::where('user_id', $user->userid)->where('device_id', $deviceId)->first();
+                $device = UserDevice::where('pratihari_id', $user->pratihari_id)->where('device_id', $deviceId)->first();
                 if ($device) {
                     $device->delete();
                     $user->currentAccessToken()->delete();
-                    Log::info("User logged out and device removed", ['user_id' => $user->id, 'device_id' => $deviceId]);
+                    Log::info("User logged out and device removed", ['pratihari_id' => $user->pratihari_id, 'device_id' => $deviceId]);
                 } else {
                     return response()->json(['message' => 'Device not found.'], 404);
                 }
             } else {
                 $user->tokens()->delete();
-                Log::info("User logged out from all devices", ['user_id' => $user->id]);
+                Log::info("User logged out from all devices", ['pratihari_id' => $user->pratihari_id]);
             }
 
             return response()->json(['message' => 'User logged out successfully.'], 200);

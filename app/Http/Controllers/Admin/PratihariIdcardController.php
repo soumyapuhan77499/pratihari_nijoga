@@ -36,7 +36,8 @@ public function saveIdcard(Request $request)
 
             // Handle file upload
             if ($request->hasFile('id_photo') && $request->file('id_photo')[$key]->isValid()) {
-                $imagePath = $request->file('id_photo')[$key]->store('public/id_photos');
+                $imagePath = $request->file('id_photo')[$key]->store('uploads/id_photo', 'public');
+
                 $idCard->id_photo = $imagePath; // Store path to the image in the database
             }
 
